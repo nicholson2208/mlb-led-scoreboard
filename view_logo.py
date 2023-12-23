@@ -9,7 +9,9 @@ from io import BytesIO
 
 import sys
 import time
-from RGBMatrixEmulator import RGBMatrix, RGBMatrixOptions, graphics
+# from RGBMatrixEmulator import RGBMatrix, RGBMatrixOptions, graphics
+from RGBMatrixEmulator import RGBMatrixOptions, graphics
+from matrix.matrix import RGBMatrix
 from RGBMatrixEmulator.graphics.color import Color
 
 mlb_logos = pd.read_csv("MLB_Colors_Logos.csv")
@@ -49,12 +51,17 @@ try:
 
                     img = Image.open(file_path + team_abbr + "/" + file_name)
 
-                    matrix.Fill(100, 100, 100)
-                    matrix.SetImage(img)
+                    # this is a gray background
+                    matrix.Fill(84, 121, 109)
+                    
+                    matrix.SetImage(img, offset_x=1, offset_y=1)
+                    # matrix.SetImage(img.convert("RGB"))
 
                     message = "w{}n{}".format(base_width, neighbors)
+                    
+                    # let's see if this one works
                     len = graphics.DrawText(matrix, font, 33, 10, textColor, message)
-                    time.sleep(2.5)
+                    time.sleep(0.5)
                     matrix.Clear()
 
 except KeyboardInterrupt:
