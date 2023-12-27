@@ -124,5 +124,5 @@ logs.txt
 # ignore .DS_STORE
 *.DS_Store
 
-# ignore vs_code stuff
-.vs_code
+# ignore vs code stuff
+.vscode
